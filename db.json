@@ -1,6 +1,7 @@
 {
     "todos": [
-      { "id": "1", "title": "a title", "isComplete": true },
-      { "id": "2", "title": "another title", "isComplete": false }
+      { "id": "1", "title": "Goto Gym", "isComplete": false },
+      { "id": "2", "title": "Eat Breakfast", "isComplete": false },
+      { "id": "3", "title": "Do Homework", "isComplete": false }
     ]
 }

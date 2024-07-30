@@ -1,17 +1,20 @@
 ---
 import "../styles/global.css";
 
-type Todo={
+import Todo from "../components/Todo.astro";
+import ToDoInput from "../components/ToDoInput.astro";
+
+export type Todo={
 	id:string;
 	title:string;
 	isComplete:boolean;
 }
 
 const posts=await fetch('http://localhost:3000/todos');
-const data=await posts.json();
+const data:Todo[]=await posts.json();
 ---
 
-<html lang="en">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -23,7 +26,15 @@ const data=await posts.json();
 		<title>Astro To-Do App</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
-		{data.map((i:Todo)=><p>{i.title}</p>)}
+		<h1>Astro To-Do</h1>
+		<ToDoInput/>
+		<div class="todos">{data.map((i:Todo)=><Todo data={i}/>)}</div>
+		<style>
+			.todos{
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1rem
+			}
+		</style>
 	</body>
 </html>

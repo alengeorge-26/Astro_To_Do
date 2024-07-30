@@ -110,11 +110,10 @@ body {
   place-content: start;
   min-height: 100vh;
 }
-
-[data-theme="light"] .icon-dark {
+[data-theme="light"] .icon-dark{
   display: none;
 }
 
-[data-theme="dark"] .icon-light {
+[data-theme="dark"] .icon-light{
   display: none;
 }

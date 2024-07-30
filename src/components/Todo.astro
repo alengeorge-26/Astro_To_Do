@@ -1,0 +1,61 @@
+---
+import type {Todo} from "../pages/index.astro";
+import { Icon } from "astro-icon/components";
+
+type Props={
+    data:Todo;
+}
+
+const { data } = Astro.props;
+const {id, title, isComplete} = data
+---
+
+<div class="wrapper">
+    <input type="checkbox" name={id} id={id}/>
+    <div class="fake-checkbox">
+        <Icon name="icon-check" class="check"/>
+    </div>
+    <label for={id}>{title}</label>
+    <Icon name="icon-cross"/>
+</div>
+
+<style>
+    .wrapper{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+    }
+
+    input{
+        opacity: 0;
+        inset:0;
+    }
+
+    .fake-checkbox{
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: 100vmax;
+        display: grid;
+        place-items: center;
+        background-color: var(--color-bkg);
+        border: 2px solid var(--color-neutral-1);
+        transition: box-shadow 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .check{
+        opacity:0
+    }
+
+    input:checked + .fake-checkbox{
+        background: var(--color-gradient);
+    }
+
+    input:checked ~ label{
+        text-decoration: line-through;
+    }
+
+    input:checked + .fake-checkbox > .check{
+        opacity: 1;
+    }
+</style>
